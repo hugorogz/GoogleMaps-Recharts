@@ -1,24 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Components from "./Components"
+import dataSet from "./dataSet.json"
+
+// gmaps api key AIzaSyBabPVJ8EbrHK5a-pr3Htuw7AY4oseh6sw
+
+const { GoogleMap } = Components
 
 function App() {
+  const { hits } = dataSet.hits
+
+  console.log(dataSet)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GoogleMap samples={hits} />
     </div>
   );
 }
