@@ -1,5 +1,6 @@
 import React from 'react'
 import GoogleMap from './GoogleMap'
+import StackedChart from './StackedChart'
 
 class MapContainer extends React.Component {
     constructor(props) {
@@ -12,14 +13,28 @@ class MapContainer extends React.Component {
     }
 
     handleSelectedSamples(countrySamples) {
+        if(!countrySamples.length){
+            alert("No samples available. Please click on another country")
+        }
+        
         this.setState({ selectedSamples: countrySamples})
     }
 
     render() {
-        console.log(this.state.selectedSamples)
-        return (
-            <GoogleMap samples={this.props.samples} handleSelectedSamples={this.handleSelectedSamples} />
-        )
+        const { selectedSamples } = this.state
+        const { samples } = this.props
+        return (<>
+            <GoogleMap samples={samples} handleSelectedSamples={this.handleSelectedSamples} />
+            {selectedSamples.length 
+            ? <StackedChart countrySamples={selectedSamples} />
+            : <h2 style={{ 
+                display: "flex", 
+                alignItems: "center", 
+                flexDirection: "column",
+                margin: 100,
+                color: "orange" 
+            }}>Click on a Country Marker to get Samples</h2>}
+        </>)
     }
 }
 
