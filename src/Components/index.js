@@ -1,5 +1,5 @@
-import GoogleMap from "./GoogleMap"
+import MapContainer from "./MapContainer"
 
 export default {
-    GoogleMap
+    MapContainer
 }

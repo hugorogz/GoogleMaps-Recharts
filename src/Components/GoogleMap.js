@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react'
+import React, { Component } from 'react'
 import ReactDOMServer from 'react-dom/server';
 import countriesDictionary from "../countriesDictionary.json"
 
@@ -32,9 +32,10 @@ class GoogleMap extends Component {
   createMarker = () => {
     var marker, country
     var infowindow = new window.google.maps.InfoWindow();
-    const { samples } = this.props
+    const { samples, handleSelectedSamples } = this.props
 
     for (country in countriesDictionary) {
+
         marker = new window.google.maps.Marker({
           position: new window.google.maps.LatLng(
               Number(countriesDictionary[country].lat),
@@ -43,9 +44,11 @@ class GoogleMap extends Component {
           label: country.toUpperCase()
         });
 
+        //listener click
         window.google.maps.event.addListener(marker, 'click', (function(marker, country) {
           return function() {
             const countrySamples = samples.filter(sample => sample._source.Country === country.toUpperCase())
+            handleSelectedSamples(countrySamples)
 
             const renderDiv = <div>
               {
@@ -75,37 +78,39 @@ class GoogleMap extends Component {
           }
         })(marker, country));
 
-        window.google.maps.event.addListener(marker, 'mouseover', (function(marker, country) {
-          return function() {
-            const countrySamples = samples.filter(sample => sample._source.Country === country.toUpperCase())
+        // listener mouseover
+        // window.google.maps.event.addListener(marker, 'mouseover', (function(marker, country) {
 
-            const renderDiv = <div>
-              {
-                countrySamples.length ? countrySamples.map(sample => {
-                  const { _source, _id } = sample
+        //   return function() {
+        //     const countrySamples = samples.filter(sample => sample._source.Country === country.toUpperCase())
 
-                  return <div>
-                    <h4>Country: {_source.Country}, Id: {_id}</h4>
-                    <ul>
-                      <li>TotalCount: {_source.TotalCount}</li>
-                      <li>Date: {_source.Date}</li>
-                      <li>Perc_lt_30ms: {_source.Perc_lt_30ms}</li>
-                      <li>Perc_30ms_60ms: {_source.Perc_30ms_60ms}</li>
-                      <li>Perc_60ms_90ms: {_source.Perc_60ms_90ms}</li>
-                      <li>Perc_90ms_150ms: {_source.Perc_90ms_150ms}</li>
-                      <li>Perc_gt_150ms: {_source.Perc_gt_150ms}</li>
-                    </ul>
-                  </div>
-                }) : <div>No Samples Available</div>
-              }
-            </div>
+        //     const renderDiv = <div>
+        //       {
+        //         countrySamples.length ? countrySamples.map(sample => {
+        //           const { _source, _id } = sample
+
+        //           return <div>
+        //             <h4>Country: {_source.Country}, Id: {_id}</h4>
+        //             <ul>
+        //               <li>TotalCount: {_source.TotalCount}</li>
+        //               <li>Date: {_source.Date}</li>
+        //               <li>Perc_lt_30ms: {_source.Perc_lt_30ms}</li>
+        //               <li>Perc_30ms_60ms: {_source.Perc_30ms_60ms}</li>
+        //               <li>Perc_60ms_90ms: {_source.Perc_60ms_90ms}</li>
+        //               <li>Perc_90ms_150ms: {_source.Perc_90ms_150ms}</li>
+        //               <li>Perc_gt_150ms: {_source.Perc_gt_150ms}</li>
+        //             </ul>
+        //           </div>
+        //         }) : <div>No Samples Available</div>
+        //       }
+        //     </div>
             
-            const tooltip = ReactDOMServer.renderToString(renderDiv);
+        //     const tooltip = ReactDOMServer.renderToString(renderDiv);
 
-            infowindow.setContent(tooltip);
-            infowindow.open(this.googleMap, marker);
-          }
-        })(marker, country));
+        //     infowindow.setContent(tooltip);
+        //     infowindow.open(this.googleMap, marker);
+        //   }
+        // })(marker, country));
       }
   }
 
