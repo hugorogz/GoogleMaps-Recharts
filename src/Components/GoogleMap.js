@@ -39,7 +39,8 @@ class GoogleMap extends Component {
           position: new window.google.maps.LatLng(
               Number(countriesDictionary[country].lat),
               Number(countriesDictionary[country].long)),
-          map: this.googleMap
+          map: this.googleMap,
+          label: country.toUpperCase()
         });
 
         window.google.maps.event.addListener(marker, 'click', (function(marker, country) {
