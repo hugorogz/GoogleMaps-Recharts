@@ -79,38 +79,40 @@ class GoogleMap extends Component {
         })(marker, country));
 
         // listener mouseover
-        // window.google.maps.event.addListener(marker, 'mouseover', (function(marker, country) {
+        window.google.maps.event.addListener(marker, 'mouseover', (function(marker, country) {
 
-        //   return function() {
-        //     const countrySamples = samples.filter(sample => sample._source.Country === country.toUpperCase())
+          return function() {
+            const countrySamples = samples.filter(sample => sample._source.Country === country.toUpperCase())
 
-        //     const renderDiv = <div>
-        //       {
-        //         countrySamples.length ? countrySamples.map(sample => {
-        //           const { _source, _id } = sample
+            const renderDiv = <div>
+              {
+                countrySamples.length ? countrySamples.map(sample => {
+                  const { _source, _id } = sample
 
-        //           return <div>
-        //             <h4>Country: {_source.Country}, Id: {_id}</h4>
-        //             <ul>
-        //               <li>TotalCount: {_source.TotalCount}</li>
-        //               <li>Date: {_source.Date}</li>
-        //               <li>Perc_lt_30ms: {_source.Perc_lt_30ms}</li>
-        //               <li>Perc_30ms_60ms: {_source.Perc_30ms_60ms}</li>
-        //               <li>Perc_60ms_90ms: {_source.Perc_60ms_90ms}</li>
-        //               <li>Perc_90ms_150ms: {_source.Perc_90ms_150ms}</li>
-        //               <li>Perc_gt_150ms: {_source.Perc_gt_150ms}</li>
-        //             </ul>
-        //           </div>
-        //         }) : <div>No Samples Available</div>
-        //       }
-        //     </div>
+                  return <div>
+                    <h4>Country: {_source.Country}, Id: {_id}</h4>
+                    <ul>
+                      <li>TotalCount: {_source.TotalCount}</li>
+                      <li>Date: {_source.Date}</li>
+                      <li>Perc_lt_30ms: {_source.Perc_lt_30ms}</li>
+                      <li>Perc_30ms_60ms: {_source.Perc_30ms_60ms}</li>
+                      <li>Perc_60ms_90ms: {_source.Perc_60ms_90ms}</li>
+                      <li>Perc_90ms_150ms: {_source.Perc_90ms_150ms}</li>
+                      <li>Perc_gt_150ms: {_source.Perc_gt_150ms}</li>
+                    </ul>
+                  </div>
+                }) : <div>No Samples Available</div>
+              }
+            </div>
             
-        //     const tooltip = ReactDOMServer.renderToString(renderDiv);
+            const tooltip = ReactDOMServer.renderToString(renderDiv);
 
-        //     infowindow.setContent(tooltip);
-        //     infowindow.open(this.googleMap, marker);
-        //   }
-        // })(marker, country));
+            infowindow.setContent(tooltip);
+            infowindow.open(this.googleMap, marker);
+          }
+
+
+        })(marker, country));
       }
   }
 
