@@ -6,27 +6,31 @@ class MapContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedSamples: []
+            selectedSamples: [],
+            selectedCountry: ""
         }
         
         this.handleSelectedSamples = this.handleSelectedSamples.bind(this)
     }
 
-    handleSelectedSamples(countrySamples) {
+    handleSelectedSamples(countrySamples, country) {
         if(!countrySamples.length){
             alert("No samples available. Please click on another country")
         }
-        
-        this.setState({ selectedSamples: countrySamples})
+
+        this.setState({ 
+            selectedSamples: countrySamples,
+            selectedCountry: country.toUpperCase()
+        })
     }
 
     render() {
-        const { selectedSamples } = this.state
+        const { selectedSamples, selectedCountry } = this.state
         const { samples } = this.props
         return (<>
             <GoogleMap samples={samples} handleSelectedSamples={this.handleSelectedSamples} />
             {selectedSamples.length 
-            ? <StackedChart countrySamples={selectedSamples} />
+            ? <StackedChart countrySamples={selectedSamples} selectedCountry={selectedCountry} />
             : <h2 style={{ 
                 display: "flex", 
                 alignItems: "center", 

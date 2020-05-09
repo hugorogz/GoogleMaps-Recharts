@@ -23,8 +23,7 @@ class GoogleMap extends Component {
     new window.google.maps.Map(this.googleMapRef.current, {
       zoom: 2,
       center: {
-        lat: 50,
-        lng: -50,
+        lat: -1.3988, lng: 38.9233
       },
       disableDefaultUI: true,
     })
@@ -48,7 +47,7 @@ class GoogleMap extends Component {
         window.google.maps.event.addListener(marker, 'click', (function(marker, country) {
           return function() {
             const countrySamples = samples.filter(sample => sample._source.Country === country.toUpperCase())
-            handleSelectedSamples(countrySamples)
+            handleSelectedSamples(countrySamples, country)
 
             const renderDiv = <div>
               {
@@ -73,6 +72,7 @@ class GoogleMap extends Component {
             
             const tooltip = ReactDOMServer.renderToString(renderDiv);
 
+            infowindow.setOptions({ disableAutoPan: true })
             infowindow.setContent(tooltip);
             infowindow.open(this.googleMap, marker);
           }
@@ -107,6 +107,7 @@ class GoogleMap extends Component {
             
             const tooltip = ReactDOMServer.renderToString(renderDiv);
 
+            infowindow.setOptions({ disableAutoPan: true })
             infowindow.setContent(tooltip);
             infowindow.open(this.googleMap, marker);
           }
