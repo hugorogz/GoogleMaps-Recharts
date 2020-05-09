@@ -122,7 +122,7 @@ class GoogleMap extends Component {
       <div
         id="google-map"
         ref={this.googleMapRef}
-        style={{ width: '900px', height: '500px',display: "flex", margin: "auto", flexDirection: "column" }}
+        style={{ width: '800px', height: '300px',display: "flex", margin: "auto", flexDirection: "column" }}
       />
     )
   }

@@ -27,18 +27,27 @@ class MapContainer extends React.Component {
     render() {
         const { selectedSamples, selectedCountry } = this.state
         const { samples } = this.props
-        return (<>
-            <GoogleMap samples={samples} handleSelectedSamples={this.handleSelectedSamples} />
-            {selectedSamples.length 
-            ? <StackedChart countrySamples={selectedSamples} selectedCountry={selectedCountry} />
-            : <h2 style={{ 
-                display: "flex", 
-                alignItems: "center", 
-                flexDirection: "column",
-                margin: 100,
-                color: "orange" 
-            }}>Click on a Country Marker to get Samples</h2>}
-        </>)
+        return (
+            <div>
+                <h2 style={{ 
+                    display: "flex", 
+                    alignItems: "center", 
+                    flexDirection: "column",
+                    margin: 25 
+                }}>UI Assignment</h2>
+
+                <GoogleMap samples={samples} handleSelectedSamples={this.handleSelectedSamples} />
+                {selectedSamples.length 
+                ? <StackedChart countrySamples={selectedSamples} selectedCountry={selectedCountry} />
+                : <h2 style={{ 
+                    display: "flex", 
+                    alignItems: "center", 
+                    flexDirection: "column",
+                    margin: 40,
+                    color: "tomato" 
+                }}>Click on a Country Marker to get Samples</h2>}
+            </div>
+        )
     }
 }
 
