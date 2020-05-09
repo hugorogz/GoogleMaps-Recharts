@@ -38,7 +38,7 @@ export default class Example extends PureComponent {
                     color: "green" 
                 }}>
                     {/* pass selected country */}
-                    Country: {selectedCountry}/
+                    Country: {selectedCountry}
                 </h3>
 
                 <BarChart
