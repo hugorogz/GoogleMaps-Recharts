@@ -155,9 +155,7 @@ class GoogleMap extends Component {
         id="google-map"
         ref={this.googleMapRef}
         style={{ width: '800px', height: '300px',display: "flex", margin: "auto", flexDirection: "column" }}
-      >
-        <div></div>
-      </div>
+      />
     )
   }
 }
