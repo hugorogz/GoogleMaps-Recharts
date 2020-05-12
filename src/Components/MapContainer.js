@@ -16,16 +16,16 @@ class MapContainer extends React.Component {
 
     handleSelectedSamples(countrySamples, country) {
 
+        if(countrySamples.length === 0){
+            // if no samples (there are countries with no samples), 
+            // open an alert that encourages to select another country
+            alert("No samples available. Please click on another country")
+        }
+
         // if there are samples, set them in state
         this.setState({ 
             selectedSamples: countrySamples,
             selectedCountry: country.toUpperCase()
-        }, () => {
-            if(countrySamples.length === 0){
-                // if no samples (there are countries with no samples), 
-                // open an alert that encourages to select another country
-                alert("No samples available. Please click on another country")
-            }
         })
     }
 
