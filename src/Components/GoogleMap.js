@@ -149,13 +149,15 @@ class GoogleMap extends Component {
   }
 
   render() {
+     // div that contains Map
     return (
-      // div that contains Map
       <div
         id="google-map"
         ref={this.googleMapRef}
         style={{ width: '800px', height: '300px',display: "flex", margin: "auto", flexDirection: "column" }}
-      />
+      >
+        <div></div>
+      </div>
     )
   }
 }

@@ -15,16 +15,17 @@ class MapContainer extends React.Component {
     }
 
     handleSelectedSamples(countrySamples, country) {
-        if(!countrySamples.length){
-            // if no samples (there are countries with no samples), 
-            // open an alert that encourages to select another country
-            alert("No samples available. Please click on another country")
-        }
 
         // if there are samples, set them in state
         this.setState({ 
             selectedSamples: countrySamples,
             selectedCountry: country.toUpperCase()
+        }, () => {
+            if(countrySamples.length === 0){
+                // if no samples (there are countries with no samples), 
+                // open an alert that encourages to select another country
+                alert("No samples available. Please click on another country")
+            }
         })
     }
 
@@ -44,15 +45,9 @@ class MapContainer extends React.Component {
                 <GoogleMap samples={samples} handleSelectedSamples={this.handleSelectedSamples} />
                 
                 {/* if no samples, show a message, otherwise, show chart with selected samples and country  */}
-                {selectedSamples.length 
+                {selectedSamples.length > 0
                 ? <StackedChart countrySamples={selectedSamples} selectedCountry={selectedCountry} />
-                : <h2 style={{ 
-                    display: "flex", 
-                    alignItems: "center", 
-                    flexDirection: "column",
-                    margin: 40,
-                    color: "tomato" 
-                }}>Click on a Country Marker to get Samples</h2>}
+                : null}
             </div>
         )
     }
