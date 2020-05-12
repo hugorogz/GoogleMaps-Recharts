@@ -47,7 +47,13 @@ class MapContainer extends React.Component {
                 {/* if no samples, show a message, otherwise, show chart with selected samples and country  */}
                 {selectedSamples.length > 0
                 ? <StackedChart countrySamples={selectedSamples} selectedCountry={selectedCountry} />
-                : null}
+                : <h2 style={{ 
+                    display: "flex", 
+                    alignItems: "center", 
+                    flexDirection: "column",
+                    margin: 40,
+                    color: "tomato" 
+                }}>Click on a Country Marker to get Samples</h2>}
             </div>
         )
     }
