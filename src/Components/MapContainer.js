@@ -39,7 +39,7 @@ class MapContainer extends React.Component {
                     alignItems: "center", 
                     flexDirection: "column",
                     margin: 25 
-                }}>UI Assignment</h2>
+                }}>Example: Google Maps - Recharts</h2>
 
                 {/* Map */}
                 <GoogleMap samples={samples} handleSelectedSamples={this.handleSelectedSamples} />
