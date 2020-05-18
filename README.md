@@ -4,8 +4,8 @@
 
 - Populate map with src/countriesDictionary.json
 - On select/hover map markers, display numerical data in infoWindow of that location
-- Plot a bar chart with the data of selected Country
-- data samples is in dataSet.json
+- When click on a country marker, plot a bar chart with the data of selected Country
+- Data samples are in dataSet.json
 
 ## Available Scripts
 
