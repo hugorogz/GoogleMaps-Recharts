@@ -2,7 +2,10 @@
 
 ![alt text](https://github.com/hugorogz/GoogleMaps-Recharts/blob/googlemaps-recharts-v1/Capture.PNG)
 
-
+- Populate map with src/countriesDictionary.json
+- On select/hover map markers, display numerical data in infoWindow of that location
+- Plot a bar chart with the data of selected Country
+- data samples is in dataSet.json
 
 ## Available Scripts
 
