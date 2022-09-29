@@ -32,6 +32,6 @@
     ]
   },
   "devDependencies": {
-    "recharts": "^1.8.5"
+    "recharts": "^2.1.14"
   }
 }
